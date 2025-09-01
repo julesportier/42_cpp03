@@ -13,6 +13,9 @@ public:
 	unsigned int getHealth() const;
 	unsigned int getEnergy() const;
 	unsigned int getAttackDamage() const;
+	void attack(const std::string& target) const;
+	void takeDamage(unsigned int amount);
+	void beRepaired(unsigned int amount);
 private:
 	std::string m_name;
 	unsigned int m_health;

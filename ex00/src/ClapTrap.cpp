@@ -1,4 +1,6 @@
 #include "ClapTrap.h"
+#include <iostream>
+#include <limits>
 
 /****************
  * CONSTRUCTORS *
@@ -49,4 +51,39 @@ unsigned int ClapTrap::getEnergy() const
 unsigned int ClapTrap::getAttackDamage() const
 {
 	return (m_attackDamage);
+}
+
+/***********
+ * ACTIONS *
+ * ********/
+void ClapTrap::attack(const std::string& target) const
+{
+	std::cout
+		<< "ClapTrap " << m_name
+		<< " attacks " << target
+		<< ", causing " << m_attackDamage << " points of damage\n";
+}
+
+void ClapTrap::takeDamage(unsigned int amount)
+{
+	if (amount > m_health)
+		m_health = 0;
+	else
+		m_health -= amount;
+	std::cout
+		<< "ClapTrap " << m_name
+		<< " takes " << amount << " points of damage. "
+		<< "Life remaining: " << m_health << "\n";
+}
+
+void ClapTrap::beRepaired(unsigned int amount)
+{
+	if (amount + m_health < amount)
+		m_health = std::numeric_limits<unsigned int>::max();
+	else
+		m_health += amount;
+	std::cout
+		<< "ClapTrap " << m_name
+		<< " get " << amount << " health points back. "
+		<< "Health: " << m_health << "\n";
 }
