@@ -29,6 +29,7 @@ ScavTrap& ScavTrap::operator=(const ScavTrap& src)
 {
 	ClapTrap::operator=(src);
 	m_gateKeeper = src.getGateKeeper();
+	std::cout << "ScavTrap copy assigment operator called\n";
 	return (*this);
 }
 
