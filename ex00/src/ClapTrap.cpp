@@ -9,15 +9,24 @@ ClapTrap::ClapTrap(std::string name)
 	: m_name(name),
 	m_health(10),
 	m_energy(10),
-	m_attackDamage(0) {}
+	m_attackDamage(0)
+{
+	std::cout << "ClapTrap default constructor called\n";
+}
 
 ClapTrap::ClapTrap(const ClapTrap& src)
 	: m_name(src.getName()),
 	m_health(src.getHealth()),
 	m_energy(src.getEnergy()),
-	m_attackDamage(src.getAttackDamage()) {}
+	m_attackDamage(src.getAttackDamage())
+{
+	std::cout << "ClapTrap copy constructor called\n";
+}
 
-ClapTrap::~ClapTrap() {};
+ClapTrap::~ClapTrap()
+{
+	std::cout << "ClapTrap destructor called\n";
+}
 
 ClapTrap& ClapTrap::operator=(const ClapTrap& src)
 {
@@ -27,6 +36,7 @@ ClapTrap& ClapTrap::operator=(const ClapTrap& src)
 		m_energy = src.getEnergy();
 		m_attackDamage = src.getAttackDamage();
 	}
+	std::cout << "ClapTrap copy assignement operator called\n";
 	return (*this);
 }
 
