@@ -66,12 +66,19 @@ unsigned int ClapTrap::getAttackDamage() const
 /***********
  * ACTIONS *
  * ********/
-void ClapTrap::attack(const std::string& target) const
+void ClapTrap::attack(const std::string& target)
 {
-	std::cout
-		<< "ClapTrap " << m_name
-		<< " attacks " << target
-		<< ", causing " << m_attackDamage << " points of damage\n";
+	if (m_energy == 0)
+		std::cout << "Not enough energy to attack!\n";
+	else if (m_health == 0)
+		std::cout << "Not enough health to attack!\n";
+	else {
+		--m_energy;
+		std::cout
+			<< "ClapTrap " << m_name
+			<< " attacks " << target
+			<< ", causing " << m_attackDamage << " points of damage\n";
+	}
 }
 
 void ClapTrap::takeDamage(unsigned int amount)
@@ -88,12 +95,19 @@ void ClapTrap::takeDamage(unsigned int amount)
 
 void ClapTrap::beRepaired(unsigned int amount)
 {
-	if (amount + m_health < amount)
-		m_health = std::numeric_limits<unsigned int>::max();
-	else
-		m_health += amount;
-	std::cout
-		<< "ClapTrap " << m_name
-		<< " get " << amount << " health points back. "
-		<< "Health: " << m_health << "\n";
+	if (m_energy == 0)
+		std::cout << "Not enough energy to repair!\n";
+	else if (m_health == 0)
+		std::cout << "Not enough health to repair!\n";
+	else {
+		--m_energy;
+		if (amount + m_health < amount)
+			m_health = std::numeric_limits<unsigned int>::max();
+		else
+			m_health += amount;
+		std::cout
+			<< "ClapTrap " << m_name
+			<< " get " << amount << " health points back. "
+			<< "Health: " << m_health << "\n";
+	}
 }

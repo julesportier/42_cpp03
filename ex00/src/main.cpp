@@ -18,7 +18,20 @@ int main()
 	ct.beRepaired(9);
 	ct.takeDamage(std::numeric_limits<unsigned int>::max());
 	ct.beRepaired(10);
-	ct.beRepaired(std::numeric_limits<unsigned int>::max());
+	ct.attack("hostile");
+
+	ClapTrap ct_a = ClapTrap("mad");
+	std::cout
+		<< "-- ct_a --"
+		<< "\nname: " << ct_a.getName()
+		<< "\nhealth: " << ct_a.getHealth()
+		<< "\nenergy: " << ct_a.getEnergy()
+		<< "\nattackDamage: " << ct_a.getAttackDamage()
+		<< "\n--------\n";
+	ct_a.beRepaired(std::numeric_limits<unsigned int>::max());
+	for (int i = 0; i < 10; ++i)
+		ct_a.attack("hostile");
+	ct_a.beRepaired(10);
 
 	ClapTrap ct_bis = ct;
 	std::cout
@@ -29,6 +42,8 @@ int main()
 		<< "\nattackDamage: " << ct_bis.getAttackDamage()
 		<< "\n--------\n";
 	ct_bis.takeDamage(1);
+	std::cout << ct.getHealth() << " health points for ct\n";
+
 	ct.getHealth();
 
 	ClapTrap ct_ter = ClapTrap("ter");
@@ -41,6 +56,6 @@ int main()
 		<< "\nattackDamage: " << ct_ter.getAttackDamage()
 		<< "\n--------\n";
 	ct_ter.takeDamage(1);
-	ct_bis.getHealth();
+	std::cout << ct_bis.getHealth() << " health points for ct_bis\n";
 	return (0);
 }
