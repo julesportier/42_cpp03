@@ -13,7 +13,7 @@ public:
 	unsigned int getHealth() const;
 	unsigned int getEnergy() const;
 	unsigned int getAttackDamage() const;
-	void attack(const std::string& target) const;
+	void attack(const std::string& target);
 	void takeDamage(unsigned int amount);
 	void beRepaired(unsigned int amount);
 protected:

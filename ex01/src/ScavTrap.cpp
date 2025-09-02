@@ -44,12 +44,19 @@ bool ScavTrap::getGateKeeper() const
 /***********
  * ACTIONS *
  * ********/
-void ScavTrap::attack(const std::string& target) const
+void ScavTrap::attack(const std::string& target)
 {
-	std::cout
-		<< "ScavTrap " << getName()
-		<< " attacks " << target
-		<< ", causing " << m_attackDamage << " points of damage\n";
+	if (m_energy == 0)
+		std::cout << "Not enough energy to attack!\n";
+	else if (m_health == 0)
+		std::cout << "Not enough health to attack!\n";
+	else {
+		--m_energy;
+		std::cout
+			<< "ScavTrap " << getName()
+			<< " attacks " << target
+			<< ", causing " << m_attackDamage << " points of damage\n";
+	}
 }
 
 void ScavTrap::takeDamage(unsigned int amount)
@@ -66,18 +73,31 @@ void ScavTrap::takeDamage(unsigned int amount)
 
 void ScavTrap::beRepaired(unsigned int amount)
 {
-	if (amount + m_health < amount)
-		m_health = std::numeric_limits<unsigned int>::max();
-	else
-		m_health += amount;
-	std::cout
-		<< "ScavTrap " << getName()
-		<< " get " << amount << " health points back. "
-		<< "Health: " << m_health << "\n";
+	if (m_energy == 0)
+		std::cout << "Not enough energy to repair!\n";
+	else if (m_health == 0)
+		std::cout << "Not enough health to repair!\n";
+	else {
+		--m_energy;
+		if (amount + m_health < amount)
+			m_health = std::numeric_limits<unsigned int>::max();
+		else
+			m_health += amount;
+		std::cout
+			<< "ScavTrap " << getName()
+			<< " get " << amount << " health points back. "
+			<< "Health: " << m_health << "\n";
+	}
 }
 
 void ScavTrap::guardGate()
 {
-	m_gateKeeper = true;
-	std::cout << "ScavTrap " << getName() << " switched to gate keeper!\n";
+	if (m_energy == 0)
+		std::cout << "Not enough energy to keep gate!\n";
+	else if (m_health == 0)
+		std::cout << "Not enough health to keep gate!\n";
+	else {
+		m_gateKeeper = true;
+		std::cout << "ScavTrap " << getName() << " switched to gate keeper!\n";
+	}
 }
