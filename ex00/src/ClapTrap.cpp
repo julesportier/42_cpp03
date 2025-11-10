@@ -5,13 +5,22 @@
 /****************
  * CONSTRUCTORS *
  * *************/
+ClapTrap::ClapTrap()
+	: m_name("unnamed"),
+	m_health(10),
+	m_energy(10),
+	m_attackDamage(0)
+{
+	std::cout << "ClapTrap default constructor called\n";
+}
+
 ClapTrap::ClapTrap(std::string name)
 	: m_name(name),
 	m_health(10),
 	m_energy(10),
 	m_attackDamage(0)
 {
-	std::cout << "ClapTrap default constructor called\n";
+	std::cout << "ClapTrap constructor called\n";
 }
 
 ClapTrap::ClapTrap(const ClapTrap& src)
