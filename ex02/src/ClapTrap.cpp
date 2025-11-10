@@ -1,17 +1,28 @@
 #include "ClapTrap.h"
 #include <iostream>
 #include <limits>
+#include <typeinfo>
+#include <cxxabi.h>
 
 /****************
  * CONSTRUCTORS *
  * *************/
+ClapTrap::ClapTrap()
+	: m_health(10),
+	m_energy(10),
+	m_attackDamage(0),
+	m_name("unnamed")
+{
+	std::cout << "ClapTrap default constructor called\n";
+}
+
 ClapTrap::ClapTrap(std::string name)
 	: m_health(10),
 	m_energy(10),
 	m_attackDamage(0),
 	m_name(name)
 {
-	std::cout << "ClapTrap default constructor called\n";
+	std::cout << "ClapTrap constructor called\n";
 }
 
 ClapTrap::ClapTrap(const ClapTrap& src)
@@ -75,7 +86,9 @@ void ClapTrap::attack(const std::string& target)
 	else {
 		--m_energy;
 		std::cout
-			<< "ClapTrap " << m_name
+			<< abi::__cxa_demangle(
+				typeid(*this).name(), NULL, NULL, NULL)
+			<< " " << m_name
 			<< " attacks " << target
 			<< ", causing " << m_attackDamage << " points of damage\n";
 	}
@@ -88,7 +101,9 @@ void ClapTrap::takeDamage(unsigned int amount)
 	else
 		m_health -= amount;
 	std::cout
-		<< "ClapTrap " << m_name
+		<< abi::__cxa_demangle(
+			typeid(*this).name(), NULL, NULL, NULL)
+		<< " " << m_name
 		<< " takes " << amount << " points of damage. "
 		<< "Life remaining: " << m_health << "\n";
 }
@@ -106,7 +121,9 @@ void ClapTrap::beRepaired(unsigned int amount)
 		else
 			m_health += amount;
 		std::cout
-			<< "ClapTrap " << m_name
+			<< abi::__cxa_demangle(
+				typeid(*this).name(), NULL, NULL, NULL)
+			<< " " << m_name
 			<< " get " << amount << " health points back. "
 			<< "Health: " << m_health << "\n";
 	}
