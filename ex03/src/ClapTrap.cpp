@@ -8,7 +8,8 @@
 ClapTrap::ClapTrap()
 	: m_health(10),
 	m_energy(10),
-	m_attackDamage(0)
+	m_attackDamage(0),
+	m_name("unnamed")
 {
 	std::cout << "ClapTrap default constructor called\n";
 }

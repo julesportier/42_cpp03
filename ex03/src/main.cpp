@@ -138,6 +138,12 @@ int main()
 	// for (int i = 0; i < 100; ++i)
 	// 	ft_ter.attack("hostile");
 	// ft_ter.beRepaired(10);
+	DiamondTrap ft = DiamondTrap();
+	std::cout << ft.getName() << '\n';
+	std::cout << ft.ClapTrap::getName() << '\n';
+	std::cout << ft.ScavTrap::getName() << '\n';
+	std::cout << ft.FragTrap::getName() << "\n\n";
+
 	DiamondTrap dt = DiamondTrap("Diam");
 	dt.whoAmI();
 	std::cout

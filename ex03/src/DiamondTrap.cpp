@@ -5,6 +5,8 @@
  * CONSTRUCTORS *
  * *************/
 DiamondTrap::DiamondTrap()
+	: ClapTrap::ClapTrap("unnamed_clap_name")
+	, m_name("unnamed")
 {
 	std::cout << "DiamondTrap default constructor called\n";
 }
