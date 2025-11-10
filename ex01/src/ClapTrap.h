@@ -5,6 +5,7 @@
 
 class ClapTrap {
 public:
+	ClapTrap();
 	ClapTrap(std::string name);
 	ClapTrap(const ClapTrap& src);
 	~ClapTrap();
@@ -13,9 +14,9 @@ public:
 	unsigned int getHealth() const;
 	unsigned int getEnergy() const;
 	unsigned int getAttackDamage() const;
-	void attack(const std::string& target);
-	void takeDamage(unsigned int amount);
-	void beRepaired(unsigned int amount);
+	virtual void attack(const std::string& target);
+	virtual void takeDamage(unsigned int amount);
+	virtual void beRepaired(unsigned int amount);
 protected:
 	unsigned int m_health;
 	unsigned int m_energy;

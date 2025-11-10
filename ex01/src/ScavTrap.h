@@ -5,14 +5,12 @@
 
 class ScavTrap : public ClapTrap {
 public:
+	ScavTrap();
 	ScavTrap(std::string name);
 	ScavTrap(const ScavTrap& src);
 	~ScavTrap();
 	ScavTrap& operator=(const ScavTrap& src);
 	bool getGateKeeper() const;
-	void attack(const std::string& target);
-	void takeDamage(unsigned int amount);
-	void beRepaired(unsigned int amount);
 	void guardGate();
 private:
 	bool m_gateKeeper;
